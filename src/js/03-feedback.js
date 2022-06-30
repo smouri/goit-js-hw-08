@@ -22,5 +22,8 @@ feedbackForm.addEventListener(
     'input',
     throttle(event => {
         let parsedFilter = localStorage.getItem('feedback-form-state');
-    })
+        parsedFilter = parsedFilter ? JSON.parce(parsedFilter) : {};
+        parsedFilter[event.target.name] = event.target.value;
+        localStorage.setItem('feedback-form-state', JSON.stringify(parsedFilter));
+    }, 500)
 );
