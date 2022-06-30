@@ -27,3 +27,15 @@ feedbackForm.addEventListener(
         localStorage.setItem('feedback-form-state', JSON.stringify(parsedFilter));
     }, 500)
 );
+
+function initialForm() {
+    let parsedFilter = localStorage.getItem('feedback-form-state');
+    if (parsedFilter) {
+        parsedFilter = JSON.parse(parsedFilter);
+        Object.entries(parsedFilter).forEach(([name, value]) => {
+            console.log(name, value);
+            feedbackForm.elements[name].value = value;
+        });
+    }
+}
+initialForm();
